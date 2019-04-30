@@ -132,6 +132,42 @@ It is much easier to read and understand an API if the resources and parameters 
 1. Sorting
 
 ### Responses
+A typical response consists of a set of headers and the body. All responses must be wrapped in a return envelope, both to carry additional metadata and to standardize on the return format.
+
+[todo: note that the meta field is intended to carry paging, data version if any. This definition is not yet complete]
+
+For a response where a single object is returned, follow this format
+
+```json
+{
+    data: { object },
+    meta: { <todo> }
+}
+```
+
+To return a list:
+
+```json
+{
+    items: [
+        { object },
+        { object }
+    ],
+    meta: { <todo> }
+}
+```
+
+To return an error that needs additional explanation beyond what the HTTP status code provides:
+
+```json
+{
+  "error": {
+    "status": 409, # MUST be provided
+    "error": "EMAIL_EXISTS", # MUST be provided and MUST be unique
+    "description": "The provided email address is not available." # OPTIONAL
+  }
+}
+```
 
 #### Typical error codes
 
@@ -146,6 +182,10 @@ This is an non-exhaustive list, obviously.
 | 400 | Used to indicate that client sent a nonsense request  |
 | 402 | Not authorized - use when additional authorization is required|
 | 403 | Forbidden - CAN be used to state that this is not and will never allowed. Alternatively use 404 |
+| 404 | Not found - for when a resource, item, action or version is not available. |
+| 409 | Conflict - a resource was posted that would violate data integrity restraints |
+| 500 | Server Error, meaning internal error. Additional information MUST NOT be provided in the response in production builds |
+
 
 See also the status code overview[1]
 
