@@ -32,7 +32,7 @@ This RFC covers mainly topics on API specification, inter-service communication 
 - Other-than-HTTP communication paradigms, such as GraphQL and event-driven systems
 - Client behaviour restrictions
 
-Some topics may be marked with [TODO]. These must be fleshed out during the drafting period, alternatively removed if consensus is that the topic should not be covered.
+Some topics may be marked with [TODO] or [to be defined]. These must be fleshed out during the drafting period, alternatively removed if consensus is that the topic should not be covered.
 
 ## Context
 
@@ -128,7 +128,7 @@ It is much easier to read and understand an API if the resources and parameters 
 
 #### Query Parameters
 
-[todo: urgent]
+[to be defined]
 
 1. Paging
 1. Filtering
@@ -192,26 +192,26 @@ This is an non-exhaustive list, obviously.
 
 See also the status code overview[1]
 
-[todo: urgent]
+[to be defined]
 
 1. Envelopes
 1. Errors
 
 #### Headers for Request and Response
 
-[todo]
+[to be defined]
 
 #### CORS
 
-[todo]
+[to be defined]
 
 ### Search vs filters
 
-[todo: urgent]
+[to be defined]
 
 ### Graph Resources
 
-[todo]
+[to be defined]
 
 ### API Versioning
 
@@ -238,7 +238,7 @@ API versioning are often done by embedding the version in the URL, in the form `
 
 ### Rate limiting
 
-[todo]
+[to be defined]
 
    1. Internal
    1. External
