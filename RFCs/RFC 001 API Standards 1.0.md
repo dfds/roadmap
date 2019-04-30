@@ -2,6 +2,10 @@
 
 Status: Draft Proposal
 
+**The drafting period runs from 30th of April to 15h of June 2019. Final comment and corrections are accepted between 16th of June to 31st of June 2019.**
+
+--------
+
 ## Abstract
 
 This document is the DFDS API Conventions and Requirements specification. All API enabled services and components, regardless of intended audience, authored within DFDS, must follow this specification.
@@ -28,8 +32,6 @@ This RFC covers mainly topics on API specification, inter-service communication 
 - Other-than-HTTP communication paradigms, such as GraphQL and event-driven systems
 - Client behaviour restrictions
 
-The drafting period runs from 30th of April to 15h of June 2019. Final comment and corrections are accepted between 1st of June to 31st of June 2019.
-
 Some topics may be marked with [TODO]. These must be fleshed out during the drafting period, alternatively removed if consensus is that the topic should not be covered.
 
 ## Context
@@ -54,7 +56,7 @@ In this contrived example, this would retrieve the uppercased city part of e.g. 
 
 ### API authentication
 
-While we are not generally ready to standardize on authentication yet, it is very common to need at least some basic API security. Having even a basic API key mechanism in place gives a lot of flexibility in case of emergencies such as attacks, need for more finely grained rate-limiting, or auditing.
+While we are not generally ready to standardise on authentication yet, it is very common to need at least some basic API security. Having even a basic API key mechanism in place gives a lot of flexibility in case of emergencies such as attacks, need for more finely grained rate-limiting, or auditing.
 
 If the service does have API key type authentication, it must follow these rules:
 
@@ -63,9 +65,9 @@ If the service does have API key type authentication, it must follow these rules
 
 ### API format and publishing
 
-To ensure that as near everybody as possible (man and machine) can read the API definitions (the description of the language that each service speaks), we want to standardize on the core formats. The exact tooling used can vary and evolve.
+To ensure that as near everybody as possible (man and machine) can read the API definitions (the description of the language that each service speaks), we want to standardise on the core formats. The exact tooling used can vary and evolve.
 
-We have chosen to standardize on OpenAPI v2 (more commonly known as Swagger) due to ubiquity and support. OpenAPI v3 is available but tooling support is not universal.
+We have chosen to standardise on OpenAPI v2 (more commonly known as Swagger) due to ubiquity and support. OpenAPI v3 is available but tooling support is not universal.
 
 1. API definitions MUST be defined via OpenAPI 2.0
 1. API definitions MUST be versioned in git (or similarly revision controlled repository) and the version in git MUST be the authoritative version
@@ -132,7 +134,7 @@ It is much easier to read and understand an API if the resources and parameters 
 1. Sorting
 
 ### Responses
-A typical response consists of a set of headers and the body. All responses must be wrapped in a return envelope, both to carry additional metadata and to standardize on the return format.
+A typical response consists of a set of headers and the body. All responses must be wrapped in a return envelope, both to carry additional metadata and to standardise on the return format.
 
 [todo: note that the meta field is intended to carry paging, data version if any. This definition is not yet complete]
 
@@ -180,7 +182,7 @@ This is an non-exhaustive list, obviously.
 | 202 | Request accepted but result may not be immediately or ever available  |
 | 301 | Used when a deprecated version is requested  |
 | 400 | Used to indicate that client sent a nonsense request  |
-| 402 | Not authorized - use when additional authorization is required|
+| 402 | Not authorised - use when additional authorization is required|
 | 403 | Forbidden - CAN be used to state that this is not and will never allowed. Alternatively use 404 |
 | 404 | Not found - for when a resource, item, action or version is not available. |
 | 409 | Conflict - a resource was posted that would violate data integrity restraints |
@@ -223,8 +225,8 @@ API versioning are often done by embedding the version in the URL, in the form `
 1. REST API services MUST Support URL versioning
     1. They MAY support Header and/or Accepts format additionally provided they follow the form specified above
     1. MUST NOT use subdomains or query parameters solely for this purpose
-1. The version MUST always be a positive whole number, digits-only, monotonically increasing, prefixed with the letter `v`, e.g. "`v1`, "`v18`"
     1. The service MUST NOT offer further mechanisms to versioning
+1. The version MUST always be a positive whole number, digits-only, monotonically increasing, prefixed with the letter `v`, e.g. "`v1`, "`v18`"
     1. ~~It MAY additionally provide a date-based subselection as a date-based format, provided that the format is YYYYMMDD gregorian as that format would not break the parent rule (so `/api/v1/20190618/users/{:id}`)~~
 1. MUST increment upon any breaking changes
     1. MAY chose to increment upon non-breaking but otherwise major changes
