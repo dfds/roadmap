@@ -2,7 +2,7 @@
 
 Status: Draft Proposal
 
-**The drafting period runs from 30th of April to 15h of June 2019. Final comment and corrections are accepted between 16th of June to 31st of June 2019.**
+**The drafting period runs from 30th of April to 14th of June 2019. Final comment and corrections are accepted until 28th of June 2019.**
 
 --------
 
@@ -50,7 +50,7 @@ In this contrived example, this would retrieve the uppercased city part of e.g. 
 
 [todo: add sample architecture diagrams such as for BFF pattern]
 
---------------
+--------
 
 ## Contents
 
@@ -135,6 +135,7 @@ It is much easier to read and understand an API if the resources and parameters 
 1. Sorting
 
 ### Responses
+
 A typical response consists of a set of headers and the body. All responses must be wrapped in a return envelope, both to carry additional metadata and to standardise on the return format.
 
 [todo: note that the meta field is intended to carry paging, data version if any. This definition is not yet complete]
@@ -143,8 +144,8 @@ For a response where a single object is returned, follow this format
 
 ```json
 {
-    data: { object },
-    meta: { <todo> }
+    "data": { object },
+    "meta": { <todo> }
 }
 ```
 
@@ -152,11 +153,12 @@ To return a list:
 
 ```json
 {
-    items: [
+    "items": [
         { object },
-        { object }
+        { object },
+        ...
     ],
-    meta: { <todo> }
+    "meta": { <todo> }
 }
 ```
 
@@ -183,19 +185,14 @@ This is an non-exhaustive list, obviously.
 | 202 | Request accepted but result may not be immediately or ever available  |
 | 301 | Used when a deprecated version is requested  |
 | 400 | Used to indicate that client sent a nonsense request  |
-| 402 | Not authorised - use when additional authorization is required|
+| 401 | Not authorized - use when valid authorization is required to proceed |
 | 403 | Forbidden - CAN be used to state that this is not and will never allowed. Alternatively use 404 |
 | 404 | Not found - for when a resource, item, action or version is not available. |
 | 409 | Conflict - a resource was posted that would violate data integrity restraints |
+| 422 | Unprocessable Entity - SHOULD be returned upon data validation errors. Error envelope MAY give further details |
 | 500 | Server Error, meaning internal error. Additional information MUST NOT be provided in the response in production builds |
 
-
 See also the status code overview[1]
-
-[to be defined]
-
-1. Envelopes
-1. Errors
 
 #### Headers for Request and Response
 
