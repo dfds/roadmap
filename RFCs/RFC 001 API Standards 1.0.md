@@ -112,18 +112,19 @@ Regarding method calls, as mentioned above, HTTP does have a wide variety of `me
 1. A GET call MUST NOT result in altering or otherwise cause any side-effects to the state of the resource
 1. A GET call MUST NOT be used for state changes, i.e. `GET /ships/{:id}/sink` is not allowed. `PUT /ships/{:id}/sink` is fine
 1. It MAY offer support for other HTTP methods such as INFO, HEAD, OPTIONS, TRACE, CONNECT
-
-It is much easier to read and understand an API if the resources and parameters are clearly and comprehensively named:
-
-1. All resources MUST be named with nouns (`/users, /ships` is fine) and MUST NOT use verbs (`/add_shipment` is not allowed)
-    1. Actions upon a resource, if relevant, SHOULD be verbs, i.e. `/users/{:id}/activate`
-1. It SHOULD NOT mix singular and plural nouns. It is much more readable to stick with plural nouns for all resources
-1. It SHOULD use subresources for relations, i.e. `/users/{:id}/bookings
 1. It is NOT RECOMMENDED to use situational or compound resources. While it can be tempting to shift the load from the consumer in the cases where they need to fetch multiple resources, or want an abridged variant of the data, it is generally more futureproof and incurs less technical debt to offer either deep-loading of subresources or field-level verbosity instead
 
 #### Naming convention
 
-[todo: urgent]
+It is much easier to read and understand an API if the resources and parameters are clearly and comprehensively named:
+
+1. Urls MUST be lowercase
+1. Urls MUST use hyphens (-) to improve readability
+1. All API resources MUST be named with nouns (`/users, /ships` is fine) and MUST NOT use verbs (`/add_shipment` is not allowed)
+    1. Actions upon a resource, if relevant, SHOULD be verbs, i.e. `/users/{:id}/activate`
+1. The API SHOULD NOT mix singular and plural nouns. It is much more readable to stick with plural nouns for all resources
+1. The API SHOULD use subresources for relations, i.e. `/users/{:id}/bookings
+1. The API SHOULD NOT use CRUD function names in URIs
 
 #### Query Parameters
 
