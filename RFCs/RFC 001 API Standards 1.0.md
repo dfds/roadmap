@@ -73,9 +73,33 @@ We have chosen to standardize on OpenAPI v2 (more commonly known as Swagger) due
 1. Services MAY expose a API UI endpoint (e.g. `https://service_url/swagger` or similar) and indeed it is RECOMMENDED to do so
 1. Services SHOULD NOT generate the API definition from code and instead validate the code using the contract. This is to avoid unintentionally breaking the API by for example changing the variable type of a class member.
 
-#### Documentation
+#### Definition standards
 
-[todo]
+OpenAPI 2.0 examples are openly available at <https://github.com/OAI/OpenAPI-Specification/tree/master/examples/v2.0>. Taking the preamble <https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/yaml/petstore-minimal.yaml> as example
+
+```yaml
+---
+  swagger: "2.0"
+  info:
+    version: "1.0.0"
+    title: "Swagger Petstore"
+    description: "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification"
+    termsOfService: "http://swagger.io/terms/"
+    contact:
+      name: "Swagger API Team"
+    license:
+      name: "MIT"
+  host: "petstore.swagger.io"
+  basePath: "/api"
+  schemes:
+    - "https"
+  consumes:
+    - "application/json"
+  produces:
+    - "application/json"
+  ```
+
+`host`, `basePath` and `termsOfService` are OPTIONAL. All other fields MUST be present and have meaningful content.
 
 ### Resources and grammar
 
@@ -108,6 +132,22 @@ It is much easier to read and understand an API if the resources and parameters 
 1. Sorting
 
 ### Responses
+
+#### Typical error codes
+
+This is an non-exhaustive list, obviously.
+
+| Code  | Use when |
+|---|---|
+| 200 | OK - returned whenever there are nothing wrong and nothing else to add   |
+| 201 | Created - use on successful POST of new item  |
+| 202 | Request accepted but result may not be immediately or ever available  |
+| 301 | Used when a deprecated version is requested  |
+| 400 | Used to indicate that client sent a nonsense request  |
+| 402 | Not authorized - use when additional authorization is required|
+| 403 | Forbidden - CAN be used to state that this is not and will never allowed. Alternatively use 404 |
+
+See also the status code overview[1]
 
 [todo: urgent]
 
@@ -163,6 +203,11 @@ API versioning are often done by embedding the version in the URL, in the form `
 ## Inspiration and additional reading
 
 These blogs and resources have been great inspiration
- - https://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/
- - https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
- - https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/ (note that the conclusion ends up being that URL versioning is what everybody uses)
+
+- https://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/
+- https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+- https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/ (note that the conclusion ends up being that URL versioning is what everybody uses)
+- https://www.restapitutorial.com/httpstatuscodes.html
+
+
+[1]: https://www.restapitutorial.com/httpstatuscodes.html
