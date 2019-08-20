@@ -18,7 +18,7 @@ Use OpenAPI 3 as API definition format. OpenAPI 2 is also fine if your tooling i
 
 ### Versioning
 
-All APIs must be versioned. The version must in the header, and be a simple positive whole number prefixed with `v`. Higher numbers are newer versions. You must bump the version if there are any breaking changes between releases.
+All APIs must be versioned. The version must be set as the first element in the URL, and be a single positive whole number prefixed with `v`. You must bump the version if there are any breaking changes between releases.
 
 A breaking change is defined as removing or renaming any fields or resources, or changing the meaning of resource or field.
 
@@ -196,3 +196,10 @@ todo
 - Client behaviour restrictions
 - GraphQL
 
+### Links and further reading
+
+As we stated very early on, we have based our standards on the JSON API style of REST interfaces. It is, however, very long and goes into a great depth on very specific topics. No doubt being specific is a plus when designing interfaces but still the JSON API is a large time commitment. We recommend further reading in this order:
+
+Start off with https://www.restapitutorial.com/. It gives a fairly good overview of the best and most important points when designing RESTful APIs.
+
+If you have specific questions about a narrow topic, read the JSON:API 1.1 guide at https://jsonapi.org/format/1.1/. Unless **directly countermanded** by the document you are currently reading, it has many good points and patterns to follow.
