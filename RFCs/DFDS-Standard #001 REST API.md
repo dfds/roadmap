@@ -145,6 +145,11 @@ There are many possible headers. Avoid carrying application state in the headers
 
 Other typically seen HTTP headers can be found here https://www.whitehatsec.com/blog/list-of-http-response-headers/
 
+### Idempotency
+
+Services should act in an idempotent way, such that multiple call to the same resource returns same result.
+See https://www.restapitutorial.com/lessons/idempotency.html for more information.
+
 ## A full example
 
 ```yaml
@@ -332,16 +337,16 @@ todo
 
 1. REST API services MUST Support URL versioning
     1. They MAY support Header and/or Accepts format additionally provided they follow the form specified above
-    1. MUST NOT use subdomains or query parameters solely for this purpose
-    1. The service MUST NOT offer further mechanisms to versioning
-1. The version MUST always be a positive whole number, digits-only, monotonically increasing, prefixed with the letter `v`, e.g. "`v1`, "`v18`"
+    2. MUST NOT use subdomains or query parameters solely for this purpose
+    3. The service MUST NOT offer further mechanisms to versioning
+2. The version MUST always be a positive whole number, digits-only, monotonically increasing, prefixed with the letter `v`, e.g. "`v1`, "`v18`"
     1. It MAY additionally provide a date-based subselection as a date-based format, provided that the format is YYYYMMDD gregorian as that format would not break the parent rule (so `/api/v1/20190618/users/{:id}`)
-1. MUST increment upon any breaking changes
+3. MUST increment upon any breaking changes
     1. MAY chose to increment upon non-breaking but otherwise major changes
-1. If a user requests a deprecated version, or does not specify a version at all, the service MAY chose to handle it gracefully
+4. If a user requests a deprecated version, or does not specify a version at all, the service MAY chose to handle it gracefully
     1. Fallback to oldest still supported version if no version provided. If your service offers v2, v3, and v4, and a consumer issues `GET /api/users{:id}`, the v2 version must be delivered. In this case, the service MUST indicate via return headers which version was returned. If no version is provided, and the oldest supported does not offer the requested operation, it is a standard 404 situation
-    1. If a deprecated version is requested, the service MAY issue a HTTP 301 redirect to the oldest stable. It does not need to preserve the requested route
-    1. If none of the above two options are suitable, the service MUST return a HTTP 404 response with a suitable error message
+    2. If a deprecated version is requested, the service MAY issue a HTTP 301 redirect to the oldest stable. It does not need to preserve the requested route
+    3. If none of the above two options are suitable, the service MUST return a HTTP 404 response with a suitable error message
 
 ### Exemptions
 
