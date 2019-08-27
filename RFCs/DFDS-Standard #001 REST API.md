@@ -15,6 +15,10 @@ DFDS has chosen to use the [JSON API 1.1 standard](https://jsonapi.org/format/1.
 
 Use OpenAPI 3 as API definition format. OpenAPI 2 is also fine if your tooling is not OpenAPI 3 ready. Always use git to keep the definition versioned. The git version is always the authoritative version.
 
+### Publishing
+
+Services should **not** generate the API definition from code and instead validate the code using the contract. This is to avoid unintentionally breaking the API by for example changing the variable type of a class member.
+
 ### Versioning
 
 All APIs must be versioned. The version must be set as the first element in the URL, and be a single positive whole number prefixed with `v`. You must bump the version if there are any breaking changes between releases.
