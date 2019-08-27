@@ -6,11 +6,10 @@ To avoid having to read a bricks' worth of text just to build an API, this docum
 1. A 'quick-start' list of the main points that DFDS is aligning on, including a full example
 2. A slightly more text-heavy theory sections along with references to further reading
 
-[[toc]]
-
 ## Quick-start
+If you are new to REST APIs there is a good tutorial at (https://www.restapitutorial.com).
 
-DFDS has chosen to use the [JSON API 1.1 standard](https://jsonapi.org/format/1.1/#errors) as a basis for style, with a number of clarifications and opinionated choices.
+DFDS has chosen to use the [JSON API 1.1 standard](https://jsonapi.org/format/1.1/#errors) as a **basis** for style, with a number of clarifications and opinionated choices. These are all listed below.
 
 ### Format
 
@@ -38,11 +37,11 @@ paths:
 It is much easier to read and understand an API if the resources and parameters are clearly and concisely named. A few pointers:
 
 1. Urls are lowercase. Use hyphens (-) to improve readability
-1. Resources are nouns (`/users, /ships`) and no verbs (no `/add_shipment`)
+2. Resources are nouns (`/users, /ships`) and no verbs (no `/add_shipment`)
     1. Actions upon a resource, if relevant, can be verbs, i.e. `/users/{:id}/activate`
-1. Use subresources for relations, i.e. `/users/{:id}/bookings`
-1. Do not use compound objects invented for convenience, so avoid e.g. `listOfBookingsWithShipNoAndDestinationAddress`
-1. Prefer filter query parameters over `/search` endpoints. Filters work on structured data, search functions on unstructured
+3. Use subresources for relations, i.e. `/users/{:id}/bookings`
+4. Do not use compound objects invented for convenience, so avoid e.g. `listOfBookingsWithShipNoAndDestinationAddress`
+5. Prefer filter query parameters over `/search` endpoints. Filters work on structured data, search functions on unstructured
 
 ### Response body
 
@@ -50,8 +49,8 @@ For a response where a single object is returned, follow this format
 
 ```json
 {
-    "data": { object },
-    "meta": { ... }
+    "data": { },
+    "meta": { }
 }
 ```
 
@@ -60,13 +59,15 @@ To return a list:
 ```json
 {
     "items": [
-        { object },
-        { object },
+        { },
+        { },
         ...
     ],
     "meta": { ... }
 }
 ```
+
+All keys are camel case English, in the proper form (ends with 's' when plural). 
 
 The meta object can contain (varies with type of response)
 
@@ -323,9 +324,12 @@ The strength of REST lies in the separation into logical resources (bookings, sh
 In this contrived example, this would retrieve the uppercased city part of e.g. the home address of a specific user based on their unique user id. In the real world, it is also necessary to specify a protocol, server address and possibly port number. These parts of the invocation are always excluded.
 
 ### REST API Maturity levels
-:::danger
-todo
-:::
+
+Going towards a RESTful interface is a journey where value can be derived even if the API does not feature all possible features and properties. For example, for some APIs it can be beneficial if the API itself is machine-readable and -consumable. Somewhat simplified, this is called a "hypermedia" interface.
+
+An often cited source on *levels of maturity* for APIs is Leonard Richardsons and Martin Fowlers' [maturity model](https://martinfowler.com/articles/richardsonMaturityModel.html) which is a worthwhile read.
+
+For DFDS purposes, we want externally consumable APIs to be level 2 or better, meaning that guidance on resources and HTTP methods should be followed, but hypermedia controls and other newer features are optional as long as there is no requirement for the clients for understand such features.
 
 ### In-depth on pagination
 
