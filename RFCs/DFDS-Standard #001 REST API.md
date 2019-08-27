@@ -256,6 +256,14 @@ paths:
                     $ref: '#/components/schemas/Pet'
                   meta:
                     $ref: '#/components/schemas/Metadata'
+        '404':
+          description: Furry friend not found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
         default:
           description: unexpected error
           content:
