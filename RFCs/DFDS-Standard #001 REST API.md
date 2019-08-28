@@ -419,9 +419,8 @@ For DFDS purposes, we want externally consumable APIs to be level 2 or better, m
 
 ### In-depth on pagination
 
-:::danger
-todo
-:::
+Using a "black box" token to control pagination allows underlying APIs some freedom in choosing a pagination solution that fits their needs, without being locked into the choice permanently (or requiring a version bump). We generally do not recommend using a page-number/offset approach because when the underlying collection changes, the results are not determistic . For simple cases, a page-number/offset implementation can be sufficient and in these cases, the paging string can simply be encoded using a two-way transformation function and given to the user.
+
 
 ### In-depth on versioning
 
@@ -440,10 +439,12 @@ todo
 
 ### Exemptions
 
+This version of the standard has deliberately chosen not to cover these topics. They may be included in future revisions.
+
 - Application and transport protocols
 - API authorization and authentication
 - HATEOAS style hyperlinking
-- Other-than-HTTP communication paradigms, such as GraphQL and event-driven systems
+- Other-than-HTTP communication paradigms, such as event-driven systems
 - Client behaviour restrictions
 - GraphQL
 
