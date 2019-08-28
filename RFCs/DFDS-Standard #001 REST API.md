@@ -187,6 +187,11 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: pet response
@@ -211,6 +216,12 @@ paths:
     post:
       summary: Create a best friend(??)
       operationId: addPet
+      parameters:
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          required: true
       requestBody:
         description: Pet to add to the store
         required: true
@@ -245,6 +256,11 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: pet response
@@ -283,6 +299,11 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          required: true
       responses:
         '204':
           description: pet deleted
@@ -306,6 +327,11 @@ paths:
         schema:
           type: integer
           format: int64
+      - name: X-Api-Key
+          in: header
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: pet response
