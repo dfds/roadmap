@@ -1,10 +1,11 @@
 # DFDS REST API Standards
 This is the DFDS API Standards document.
 
-To avoid having to read a bricks' worth of text just to build an API, this document is divided into two main sections
+To avoid having to read a novels' worth of text just to build an API, this document is divided into three sections
 
-1. A 'quick-start' list of the main points that DFDS is aligning on, including a full example
-2. A slightly more text-heavy theory sections along with references to further reading
+1. 'Quick-start' list of the main points that DFDS is aligning on
+2. A full example that is aligned with our policies
+3. Lastly, a theory section along with references to further reading
 
 ## Quick-start
 If you are new to REST APIs there is a good tutorial at (https://www.restapitutorial.com).
@@ -65,9 +66,9 @@ To return a list:
     "items": [
         { },
         { },
-        ...
+        { }
     ],
-    "meta": { ... }
+    "meta": { }
 }
 ```
 
@@ -78,7 +79,7 @@ The meta object can contain (varies with type of response)
 ```json
     "meta": {
         "lastResultToken": "<optional: a black box string>",
-        "nextResultToken": "<for lists only, not optional: a black box string>",
+        "nextResultToken": "<for lists only, not optional: A black box string>",
         "ETag": "<optional>",
         "lastModified": "<optional, use yyyy-MM-dd'T'HH:mm:ssZ if set>"
     }
